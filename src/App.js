@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { StateProvider } from './state'
+import AppBar from './components/AppBar';
+import ActionButtons from './components/ActionButtons';
+import Level from './components/Level';
+import TargetsList from './components/TargetsList';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FB2022',
+    }
+  },
+});
+
+const AppContainer = styled.div`
+    width: 90vw;
+    margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StateProvider>
+      <ThemeProvider theme={theme}>
+        <AppBar siteTitle="Where the Feck is this Lad?"/>
+        <AppContainer>
+          <Level />
+          <TargetsList />
+          <ActionButtons />
+        </AppContainer>
+      </ThemeProvider>
+    </StateProvider>
   );
 }
 
