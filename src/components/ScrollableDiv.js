@@ -6,6 +6,7 @@ const StyledDiv = styled.div`
     overflow-x: auto;
     overflow-y: auto;
     cursor: pointer;
+    height: 80vh;
     max-height: 80vh;
     margin-bottom: 1.5rem;
 
