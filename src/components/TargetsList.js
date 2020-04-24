@@ -9,8 +9,18 @@ const IconGrid = styled.div`
     flex-wrap: wrap;
 `;
 
-const StyledIcon = styled.img`
+const IconContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: solid 2px black;
+    width: 224px;
+    max-width: 224px;
+    height: 216px;
+    max-height: 216px;
+`;
+
+const StyledIcon = styled.img`
     filter: ${props => props.isFound ? "none" : "grayscale(100%)"};
 `;
 
@@ -44,13 +54,14 @@ function TargetsList() {
             {
                 targets.map((target) => {
                     return (        
-                        <StyledIcon 
-                            key={target}
-                            id={target}
-                            alt={target} 
-                            src={targetIcons[target]}
-                            isFound={level.targetsFound.includes(target)}
-                        />
+                        <IconContainer key={target}>
+                            <StyledIcon
+                                id={target}
+                                alt={target} 
+                                src={targetIcons[target]}
+                                isFound={level.targetsFound.includes(target)}
+                            />
+                        </IconContainer>
                     );
                 })
             }
