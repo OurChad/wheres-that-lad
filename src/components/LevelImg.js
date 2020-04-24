@@ -48,7 +48,7 @@ function LevelImg({ currentLevel, onTargetClick }) {
     return levelLoaded ?
                 (
                     <ScrollableDiv>
-                        <img src={levelImg} useMap="#image-map" alt="level" />
+                        <img src={levelImg} useMap="#image-map" alt="level" draggable="false" />
                         {renderImageMap()}
                     </ScrollableDiv>
                 )  : <ScrollableDiv>
