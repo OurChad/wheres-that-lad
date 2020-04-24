@@ -1,14 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { constants } from '../state';
 import ScrollableDiv from './ScrollableDiv';
 
-const StyledArea = styled.area`
-    background-color: black;
-    fill: black;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-`;
 function LevelImg({ currentLevel, onTargetClick }) {
     const [levelLoaded, setLevelLoaded] = useState(false);
     const [levelImg, setLevelImg] = useState('');
@@ -24,7 +19,11 @@ function LevelImg({ currentLevel, onTargetClick }) {
 
     useEffect(() => {
         importLevelData();
-    });
+    }, [currentLevel, importLevelData]);
+
+    useEffect(() => {
+        setLevelLoaded(false);
+    }, [currentLevel]);
 
     const renderImageMap = useCallback(() => {
         const { targets } = constants;
@@ -32,7 +31,7 @@ function LevelImg({ currentLevel, onTargetClick }) {
             <map name="image-map">
                 {
                     targets.map((target) => (
-                        <StyledArea 
+                        <area 
                             key={target}
                             alt={target}
                             title={target}
@@ -52,7 +51,9 @@ function LevelImg({ currentLevel, onTargetClick }) {
                         <img src={levelImg} useMap="#image-map" alt="level" />
                         {renderImageMap()}
                     </ScrollableDiv>
-                )  : <h2>Loading</h2>
+                )  : <ScrollableDiv>
+                    <LinearProgress />
+                </ScrollableDiv>
         
     
 }
